@@ -48,7 +48,7 @@ function fillForm() {
     localStorage.setItem("reload_count", lsReloadCount);
   }
 
-  console.log(lsReloadCount)
+  // console.log(lsReloadCount)
   const activeWallet = parsedWallets[Math.ceil(lsReloadCount / 2) - 1]
 
   if (networkDiv) {
@@ -59,18 +59,25 @@ function fillForm() {
       if (optionToClick) optionToClick.click();
     }, 1000); // Adjust delay as needed based on the page's response time
     setTimeout(() => {
-      walletInput.select();
-      navigator.clipboard.writeText(activeWallet);
-      pasteButton.click()
-    }, 1200);
+      // walletInput.disabled = false;
+      // walletInput.select();
+      // console.log(chrome.tabs);
+      // chrome.tabs.update(tabId, { active: true });
+      // navigator.clipboard.writeText(activeWallet);
+      // pasteButton.click()
+      walletInput
+    }, 2000);
     setTimeout(() => {
-      console.log("submit: ", submitButton, activeWallet)
+      // console.log("submit: ", submitButton, activeWallet)
+      // chrome.runtime.sendMessage({data: "hello"}, function(response) {
+      //   console.log(response.farewell);
+      // });
       submitButton.click();
-    }, 1400);
+    }, 3000);
     setTimeout(() => {
       const confirmButton = findElementByString("Confirm");
-      confirmButton.click();
-    }, 2400);
+      // confirmButton.click();
+    }, 4000);
   }
 
   setTimeout(function(){
@@ -79,24 +86,23 @@ function fillForm() {
     } else {
       localStorage.setItem("reload_count", lsReloadCount + 1);
     }
+
     window.location.reload(1);
- }, 308000);
+ }, 330000);
 }
       
 function run() {
   setTimeout(() => {
     
-    console.log('The DOM is loaded');
-    console.log(document.querySelectorAll("div[data-v-466ec37b]"))
+    // console.log('The DOM is loaded');
+    // console.log(document.querySelectorAll("div[data-v-466ec37b]"))
 
     fillForm()
+    
+  //   chrome.runtime.sendMessage({text: "hey"}, function(response) {
+  //     console.log("Response: ", response);
+  // });
   }, 2000);
 }
 
 document.addEventListener("DOMContentLoaded", run);
-
-document.addEventListener("click", (e) => {
-  const pasteButton = findElementByString("Paste");
-
-  console.log(e);
-});
